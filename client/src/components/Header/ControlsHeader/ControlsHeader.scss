@@ -1,0 +1,28 @@
+@import '~bpk-mixins';
+
+.ControlsHeader {
+  display: flex;
+  padding: $bpk-spacing-sm;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $bpk-color-white;
+
+  @include bpk-box-shadow-sm;
+
+  &__hidden-text {
+    @include bpk-visually-hidden;
+  }
+
+}
+
+.rightAlign {
+  float: right;
+}
+
+.leftAlign {
+  float: left;
+}
+
+.whiteBackground {
+  background: $bpk-color-white;
+}

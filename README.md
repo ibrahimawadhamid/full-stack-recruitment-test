@@ -48,7 +48,7 @@ We've set you up with a build based on [our custom fork](https://backpack.github
 
 - `npm run client` to start the client development build at [http://localhost:3000](http://localhost:3000)
 
-We've wired in [Sass](http://sass-lang.com/) with our base stylesheet (`bpk-stylesheets`) + mixins (`bpk-mixins`) for you to get at -- see the [`Header`](./client/src/components/Header/Header.jsx) component for example use.
+We've wired in [Sass](http://sass-lang.com/) with our base stylesheet (`bpk-stylesheets`) + mixins (`bpk-mixins`) for you to get at -- see the [`Header`](client/src/components/Header/TopHeader/Header.jsx) component for example use.
 
 ## API implementation
 

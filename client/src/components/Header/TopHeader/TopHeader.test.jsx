@@ -1,11 +1,11 @@
 import React from 'react';
 import TestRenderer from 'react-test-renderer';
 
-import Header from './Header';
+import TopHeader from './TopHeader';
 
-describe('Header', () => {
+describe('TopHeader', () => {
   it('should render correctly', () => {
-    const tree = TestRenderer.create(<Header />).toJSON();
+    const tree = TestRenderer.create(<TopHeader />).toJSON();
 
     expect(tree).toMatchSnapshot();
   });

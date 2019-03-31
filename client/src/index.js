@@ -1,25 +1,22 @@
-/* eslint-disable no-console */
-// Disabling 'no-console' as it's reasonable for this file to do some logging.
-
-
 import 'bpk-stylesheets';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
+import {createStore, applyMiddleware, compose, combineReducers} from 'redux';
+import thunk from 'redux-thunk';
 
+import SearchHandlerReducer from './store/reducers/SearchHandler';
 import App from './components/App';
 
-ReactDOM.render(React.createElement(App), document.getElementById('root'));
+const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || null : compose;
+const store = createStore(SearchHandlerReducer, composeEnhancers(
+  applyMiddleware(thunk)
+));
+const app = (
+  <Provider store={store}>
+    <App/>
+  </Provider>
+);
 
-// example api use
-// TODO put this call somewhere sensible
-// TODO send parameters to server - check out `server/src/live-pricing.js`
-console.log('fetching results from server...');
-
-fetch('http://localhost:4000/api/search')
-  .then(response => response.json())
-  .then((results) => {
-    console.log('TODO: something with these results:');
-    console.log(results);
-  })
-  .catch(console.error);
+ReactDOM.render(app, document.getElementById('root'));
 

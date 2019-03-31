@@ -1,19 +1,18 @@
-import React from 'react';
-import SideDrawerButton from './SideDrawerButton';
+import React, {Component} from 'react';
+import TopHeader from "./TopHeader";
+import InfoHeader from "./InfoHeader";
+import ControlsHeader from "./ControlsHeader";
 
-import logo from './logo.svg';
-import STYLES from './Header.scss';
-
-const c = className => STYLES[className] || 'UNKNOWN';
-
-const Header = () => (
-  <header className={c('Header')}>
-    <a href="/">
-      <span className={c('Header__hidden-text')}>Skyscanner</span>
-      <img className={c('Header__logo-image')} alt="Skyscanner" src={logo}/>
-    </a>
-    <SideDrawerButton/>
-  </header>
-);
+class Header extends Component {
+  render() {
+    return(
+      <div>
+        <TopHeader />
+        <InfoHeader/>
+        <ControlsHeader/>
+      </div>
+    );
+  };
+};
 
 export default Header;
