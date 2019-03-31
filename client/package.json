@@ -13,13 +13,36 @@
     "lint": "npm run lint:js && npm run lint:scss"
   },
   "devDependencies": {
-    "backpack-react-scripts": "^5.1.1",
+    "backpack-react-scripts": "^7.0.0",
+    "bpk-component-button": "^2.1.48",
+    "bpk-component-card": "^1.1.61",
+    "bpk-component-grid": "^1.1.118",
+    "bpk-component-icon": "^3.27.1",
+    "bpk-component-image": "^2.1.20",
+    "bpk-component-infinite-scroll": "^2.2.11",
+    "bpk-component-loading-button": "^2.0.72",
+    "bpk-component-panel": "^1.0.110",
+    "bpk-component-spinner": "^2.2.79",
     "bpk-component-text": "^1.0.54",
     "bpk-mixins": "^17.6.1",
     "bpk-stylesheets": "^3.2.100",
+    "bpk-tokens": "^27.4.9",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-test-renderer": "^16.3.1"
   },
-  "proxy": "http://localhost:4000"
+  "proxy": "http://localhost:4000",
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "dependencies": {
+    "axios": "^0.18.0",
+    "moment": "^2.24.0",
+    "react-redux": "^6.0.1",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
+  }
 }

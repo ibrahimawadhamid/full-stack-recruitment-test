@@ -9,8 +9,8 @@
     "lint": "eslint . --ignore-path ./../.gitignore"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.3",
-    "eslint": "^4.19.1",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.15.3",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-skyscanner": "^3.0.0",
     "eslint-plugin-import": "^2.11.0",
@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "express": "^4.16.3",
+    "lodash": "^4.17.11",
     "node-fetch": "^2.1.2"
   }
 }

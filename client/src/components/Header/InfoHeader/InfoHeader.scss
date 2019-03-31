@@ -1,0 +1,15 @@
+@import '~bpk-mixins';
+
+.InfoHeader {
+  display: flex;
+  justify-content: left;
+  background-color: $bpk-color-blue-500;
+  color: $bpk-color-white;
+  @include bpk-box-shadow-sm;
+  padding: 0 $bpk-spacing-sm;
+}
+
+.white-fill {
+  fill: $bpk-color-white;
+  vertical-align: middle;
+}
