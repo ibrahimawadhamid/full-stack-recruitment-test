@@ -8,6 +8,10 @@ import LongArrowRightIcon from 'bpk-component-icon/lg/long-arrow-right';
 import {withAlignment} from 'bpk-component-icon';
 import {lineHeightLg, iconSizeLg, lineHeightXxl} from 'bpk-tokens/tokens/base.es6';
 import BpkButton from 'bpk-component-button';
+import BpkPopover from 'bpk-component-popover';
+import moment from 'moment';
+import Station from './Station';
+import AirlineLogo from "./AirlineLogo";
 
 const AlignedArrow = withAlignment(
   LongArrowRightIcon, lineHeightXxl, iconSizeLg
@@ -16,32 +20,67 @@ const AlignedArrow = withAlignment(
 const classes = className => STYLES[className] || 'UNKNOWN';
 
 class Leg extends Component {
+  constructor() {
+    super();
+    this.state = {
+      isAdditionalStopsOpen: false,
+    };
+  }
+  openAdditionalStopsPopover = () => {
+    this.setState({
+      isAdditionalStopsOpen: true,
+    });
+  }
+  closeAdditionalStopsPopover = () => {
+    this.setState({
+      isAdditionalStopsOpen: false,
+    });
+  }
+
   render() {
     let directFlight = <BpkText textStyle="base" className={classes('rightAlign') + ' ' + classes('bottomAlign') + ' ' + classes('greenFill')}>Direct</BpkText>;
     let stopStations = <BpkText textStyle="base" className={classes('rightAlign') + ' ' + classes('bottomAlign')}></BpkText>
     if(this.props.legInfo["stopsStations"].length) {
-      directFlight = <BpkText textStyle="base" className={classes('rightAlign') + ' ' + classes('bottomAlign') + ' ' + classes('redFill')}>{this.props.legInfo["stopsStations"].length + " stop "}</BpkText>;
-      stopStations = <BpkText textStyle="base" className={classes('rightAlign') + ' ' + classes('bottomAlign')}>{this.props.legInfo["stopsStations"].join(", ")}</BpkText>;
+      directFlight =
+        <BpkText id={this.props.legInfo["Id"]+"moreStops"} onClick={this.openAdditionalStopsPopover} textStyle="base"
+                              className={classes('rightAlign') + ' ' + classes('bottomAlign') + ' ' + classes('redFill')}>
+        {this.props.legInfo["stopsStations"].length + (this.props.legInfo["stopsStations"].length == 1 ? " stop " : " stops ")}
+        </BpkText>;
     }
     return (
       <BpkGridRow>
-        <BpkGridColumn width={2}>
-          <BpkImage altText="airline logo" width={256} height={256} src="./EZ.png"/>
-        </BpkGridColumn>
-        <BpkGridColumn width={2}>
-          <BpkGridRow><BpkText textStyle="base">07:00</BpkText></BpkGridRow>
-          <BpkGridRow><BpkText textStyle="base" className={classes('grayFill500')}>{this.props.legInfo["OriginStationCode"]}</BpkText></BpkGridRow>
-        </BpkGridColumn>
+        <div id={this.props.legInfo["Id"]}>
+          <BpkPopover id="my-popover"
+            target={() => document.getElementById(this.props.legInfo["Id"]+"moreStops")}
+            onClose={this.closeAdditionalStopsPopover}
+            isOpen={this.state.isAdditionalStopsOpen}
+            label="My popover"
+            closeButtonText="Close"
+            renderTarget={() =>
+              document.getElementById(this.props.legInfo["Id"])
+            }
+            closeButtonProps={{
+              tabIndex: 0,
+            }}>
+            {this.props.legInfo["Segments"].map(segment => {
+              return (
+                <BpkText key={segment["Id"]}>{
+                  moment(segment["DepartureDateTime"]).format("HH:MM") + " " +
+                  segment["OriginCode"] + " -> " + segment["DestinationCode"] + " " + moment(segment["ArrivalDateTime"]).format("HH:MM") +
+                  " (" + moment.utc(segment["Duration"]*60000).format("h[h] mm[)]")}<br/>
+                </BpkText>)
+            })}
+          </BpkPopover>
+        </div>
+        <AirlineLogo/>
+        <Station stationTime={moment(this.props.legInfo["Departure"]).format("HH:MM")} stationName={this.props.legInfo["OriginStationCode"]}/>
         <BpkGridColumn width={2}>
           <AlignedArrow className={classes('arrowGrayColor')}/>
         </BpkGridColumn>
-        <BpkGridColumn width={2}>
-          <BpkGridRow><BpkText textStyle="base">08:30</BpkText></BpkGridRow>
-          <BpkGridRow><BpkText textStyle="base" className={classes('grayFill500')}>{this.props.legInfo["DestinationStationCode"]}</BpkText></BpkGridRow>
-        </BpkGridColumn>
+        <Station stationTime={moment(this.props.legInfo["Arrival"]).format("HH:MM")} stationName={this.props.legInfo["DestinationStationCode"]}/>
         <BpkGridColumn offset={2} width={2}>
-          <BpkGridRow><BpkText textStyle="base" className={classes('rightAlign')}>1h 30</BpkText></BpkGridRow>
-          <BpkGridRow>{directFlight}{stopStations}</BpkGridRow>
+          <BpkGridRow><BpkText textStyle="base" className={classes('rightAlign')}>{moment.utc(this.props.legInfo["Duration"]*60000).format("h[h] mm")}</BpkText></BpkGridRow>
+          <BpkGridRow>{directFlight}</BpkGridRow>
         </BpkGridColumn>
       </BpkGridRow>
 

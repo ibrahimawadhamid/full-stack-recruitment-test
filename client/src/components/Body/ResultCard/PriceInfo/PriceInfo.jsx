@@ -19,11 +19,11 @@ const classes = className => STYLES[className] || 'UNKNOWN';
 
 class PriceInfo extends Component {
   render() {
-    const otherDeals = this.props.priceInfo.length > 0 ? <BpkText textStyle="xs"> other deals</BpkText> : null
+    const otherDeals = this.props.priceInfo.length > 0 ? <BpkButton link className={classes('bottomAlign')}>&nbsp; other deals</BpkButton> : null
     return (
       <BpkGridRow>
         <BpkGridColumn width={8}>
-          <BpkGridRow>
+          <BpkGridRow className={classes('relativePosition')}>
             <BpkText textStyle="xl" className={classes('leftAlign')}>{this.props.currencySymbol}{this.props.priceInfo[0]["Price"]}</BpkText>
             {otherDeals}
           </BpkGridRow>

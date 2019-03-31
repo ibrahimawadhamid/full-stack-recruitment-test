@@ -13,8 +13,7 @@
 }
 
 .bottomAlign {
-  position: absolute;
-  bottom: .375rem;
+  float: bottom;
 }
 
 .bottomMargin {
@@ -30,6 +29,9 @@
 
 .greenFill {
   color: $bpk-color-green-500;
+}
+.redFill {
+  color: $bpk-color-red-500;
 }
 
 .arrowGrayColor {
