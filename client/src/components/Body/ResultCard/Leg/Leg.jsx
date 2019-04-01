@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {BpkGridColumn, BpkGridRow} from 'bpk-component-grid';
-import STYLES from './Leg.scss';
 import BpkText from "bpk-component-text";
 import LongArrowRightIcon from 'bpk-component-icon/lg/long-arrow-right';
 import {withAlignment} from 'bpk-component-icon';
@@ -8,8 +7,9 @@ import {iconSizeLg, lineHeightXxl} from 'bpk-tokens/tokens/base.es6';
 import BpkPopover from 'bpk-component-popover';
 import {BpkTable, BpkTableBody, BpkTableCell, BpkTableHead, BpkTableHeadCell, BpkTableRow,} from 'bpk-component-table';
 import moment from 'moment';
-import Station from './Station';
+import STYLES from './Leg.scss';
 import AirlineLogo from "./AirlineLogo";
+import Station from './Station';
 
 const AlignedArrow = withAlignment(
   LongArrowRightIcon, lineHeightXxl, iconSizeLg
@@ -28,33 +28,33 @@ class Leg extends Component {
     this.setState({
       isAdditionalStopsOpen: true,
     });
-  }
+  };
   closeAdditionalStopsPopover = () => {
     this.setState({
       isAdditionalStopsOpen: false,
     });
-  }
+  };
 
   render() {
     let directFlight = <BpkText textStyle="base" className={classes('rightAlign') + ' ' + classes('bottomAlign') + ' ' + classes('greenFill')}>Direct</BpkText>;
     if(this.props.legInfo["stopsStations"].length) {
       directFlight =
-        <BpkText id={this.props.legInfo["Id"]+"moreStops"} onClick={this.openAdditionalStopsPopover} textStyle="base"
+        <BpkText id={this.props.itineraryId + this.props.legInfo["Id"]+"moreStops"} onClick={this.openAdditionalStopsPopover} textStyle="base"
                               className={classes('rightAlign') + ' ' + classes('bottomAlign') + ' ' + classes('redFill')}>
         {this.props.legInfo["stopsStations"].length + (this.props.legInfo["stopsStations"].length == 1 ? " stop " : " stops ")}
         </BpkText>;
     }
     return (
       <BpkGridRow>
-        <div id={this.props.legInfo["Id"]}>
-          <BpkPopover id="my-popover"
-            target={() => document.getElementById(this.props.legInfo["Id"]+"moreStops")}
+        <div id={this.props.itineraryId + this.props.legInfo["Id"]}>
+          <BpkPopover id={this.props.itineraryId + this.props.legInfo["Id"] + "more-stops-popover"}
+            target={() => document.getElementById(this.props.itineraryId + this.props.legInfo["Id"]+"moreStops")}
             onClose={this.closeAdditionalStopsPopover}
             isOpen={this.state.isAdditionalStopsOpen}
-            label="My popover"
+            label="More Stops popover"
             closeButtonText="Close"
             renderTarget={() =>
-              document.getElementById(this.props.legInfo["Id"])
+              document.getElementById(this.props.itineraryId + this.props.legInfo["Id"])
             }
             closeButtonProps={{
               tabIndex: 0,
@@ -95,6 +95,6 @@ class Leg extends Component {
 
     );
   };
-};
+}
 
 export default Leg;

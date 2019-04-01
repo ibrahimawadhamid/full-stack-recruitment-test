@@ -7,10 +7,10 @@ const initialState = {
 
 
 const setResults = (state, action) => {
-  const searchResults = action.searchResults
+  const searchResults = action.searchResults;
   const updatedState = {
     searchResults: searchResults,
-  }
+  };
   return updateObject(state, updatedState);
 };
 

@@ -6,10 +6,10 @@ class AirlineLogo extends Component {
   render() {
     return (
       <BpkGridColumn width={2}>
-        <BpkImage altText="airline logo" width={256} height={256} src="./EZ.png"/>
+        <BpkImage altText="airline logo" height={48} width={48} style={{width: 48}} src="./EZ.png"/>
       </BpkGridColumn>
     );
   };
-};
+}
 
 export default AirlineLogo;

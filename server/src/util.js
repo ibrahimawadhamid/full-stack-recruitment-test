@@ -27,6 +27,7 @@ module.exports = {
       itineraries.push(tempItenrary);
     }
     const beautifulResult = {
+      query: response["Query"],
       itineraries: itineraries,
       currencySymbol: response["Currencies"][0]["Symbol"]
     };
@@ -55,7 +56,7 @@ const getStopStations = (response, leg) => {
 const getPricingOptions = (index, response) => {
   let pricingOptions = [];
   for (let j = 0; j < response["Itineraries"][index]["PricingOptions"].length; j++) {
-    const agentID = response["Itineraries"][index]["PricingOptions"][j]["Agents"][0]
+    const agentID = response["Itineraries"][index]["PricingOptions"][j]["Agents"][0];
     const tempAgent = _.find(response["Agents"], {Id: agentID});
     const tempPrice = response["Itineraries"][index]["PricingOptions"][j]["Price"];
     let tempPricingOption = {Agent: tempAgent["Name"], Price: tempPrice};

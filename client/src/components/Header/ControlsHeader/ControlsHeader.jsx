@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
 import BpkButton from 'bpk-component-button';
-import STYLES from './ControlsHeader.scss';
-import { BpkGridContainer, BpkGridRow, BpkGridColumn } from 'bpk-component-grid';
-
-import { withButtonAlignment  } from 'bpk-component-icon';
+import {BpkGridColumn, BpkGridContainer, BpkGridRow} from 'bpk-component-grid';
+import {withButtonAlignment} from 'bpk-component-icon';
 import PriceAlertsIcon from 'bpk-component-icon/sm/price-alerts';
+import STYLES from './ControlsHeader.scss';
+
 const AlignedPriceAlertsIcon = withButtonAlignment (PriceAlertsIcon);
 const classes = className => STYLES[className] || 'UNKNOWN';
 
 class ControlsHeader extends Component {
   render() {
     return(
-      <BpkGridContainer className={classes('whiteBackground')}>
+      <header className={classes('whiteBackground')}>
+      <BpkGridContainer>
         <BpkGridRow>
           <BpkGridColumn width={2}>
             <BpkButton link className={classes('leftAlign')}>Filter</BpkButton>
@@ -24,8 +25,9 @@ class ControlsHeader extends Component {
           </BpkGridColumn>
         </BpkGridRow>
       </BpkGridContainer>
+      </header>
     );
   };
-};
+}
 
 export default ControlsHeader;

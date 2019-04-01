@@ -2,9 +2,7 @@ import * as actionTypes from './actionTypes';
 import {axiosInstance} from '../../shared/utility';
 import moment from 'moment';
 
-
 export const setResults = (searchResults) => {
-  console.log(searchResults);
   return {
     type: actionTypes.SET_RESULTS,
     searchResults: searchResults
@@ -12,19 +10,18 @@ export const setResults = (searchResults) => {
 };
 
 
-export const fetchResultsFailed = () => {
+export const fetchResultsFailed = (error) => {
   return {
-    type: actionTypes.FETCH_RESULTS_FAILED
+    type: actionTypes.FETCH_RESULTS_FAILED,
+    error: error
   };
 };
 
 export const fetchResults = () => {
-  console.log('fetching results from server...');
   const nextMonday = moment().startOf('isoWeek').add(1, 'week').format("YYYY-MM-DD");
   const followingDay = moment().startOf('isoWeek').add(1, 'week').add(1, 'days').format("YYYY-MM-DD");
-  const backendURL = "http://localhost:4000/api/search"
+  const backendURL = "http://localhost:4000/api/search";
   const params = {
-    Country: "GB",
     Currency: "GBP",
     Locale: "en-GB",
     Adults: 1,
@@ -46,7 +43,7 @@ export const fetchResults = () => {
         dispatch(setResults(response.data));
       })
       .catch(error => {
-        dispatch(fetchResultsFailed());
+        dispatch(fetchResultsFailed(error));
       });
   };
 };

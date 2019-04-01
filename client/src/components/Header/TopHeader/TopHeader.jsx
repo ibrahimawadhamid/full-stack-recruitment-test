@@ -1,22 +1,21 @@
 import React, {Component} from 'react';
 import SideDrawerButton from './SideDrawerButton';
-
 import logo from './logo.svg';
 import STYLES from './TopHeader.scss';
 
-const c = className => STYLES[className] || 'UNKNOWN';
+const classes = className => STYLES[className] || 'UNKNOWN';
 
 class TopHeader extends Component {
   render() {
     return (
-      <header className={c('TopHeader')}>
+      <header className={classes('TopHeader')}>
         <a href="/">
-          <span className={c('TopHeader__hidden-text')}>Skyscanner</span>
-          <img className={c('TopHeader__logo-image')} alt="Skyscanner" src={logo}/>
+          <span className={classes('TopHeader__hidden-text')}>Skyscanner</span>
+          <img className={classes('TopHeader__logo-image')} alt="Skyscanner" src={logo}/>
         </a>
         <SideDrawerButton/>
       </header>
     );
   };
-};
+}
 export default TopHeader;
