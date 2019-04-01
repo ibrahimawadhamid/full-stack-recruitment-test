@@ -1,14 +1,12 @@
 import React, {Component} from 'react';
-import BpkCard from 'bpk-component-card';
-import {BpkGridContainer, BpkGridRow, BpkGridColumn} from 'bpk-component-grid';
-import BpkImage from 'bpk-component-image';
+import {BpkGridColumn, BpkGridRow} from 'bpk-component-grid';
 import STYLES from './Leg.scss';
 import BpkText from "bpk-component-text";
 import LongArrowRightIcon from 'bpk-component-icon/lg/long-arrow-right';
 import {withAlignment} from 'bpk-component-icon';
-import {lineHeightLg, iconSizeLg, lineHeightXxl} from 'bpk-tokens/tokens/base.es6';
-import BpkButton from 'bpk-component-button';
+import {iconSizeLg, lineHeightXxl} from 'bpk-tokens/tokens/base.es6';
 import BpkPopover from 'bpk-component-popover';
+import {BpkTable, BpkTableBody, BpkTableCell, BpkTableHead, BpkTableHeadCell, BpkTableRow,} from 'bpk-component-table';
 import moment from 'moment';
 import Station from './Station';
 import AirlineLogo from "./AirlineLogo";
@@ -39,7 +37,6 @@ class Leg extends Component {
 
   render() {
     let directFlight = <BpkText textStyle="base" className={classes('rightAlign') + ' ' + classes('bottomAlign') + ' ' + classes('greenFill')}>Direct</BpkText>;
-    let stopStations = <BpkText textStyle="base" className={classes('rightAlign') + ' ' + classes('bottomAlign')}></BpkText>
     if(this.props.legInfo["stopsStations"].length) {
       directFlight =
         <BpkText id={this.props.legInfo["Id"]+"moreStops"} onClick={this.openAdditionalStopsPopover} textStyle="base"
@@ -62,14 +59,26 @@ class Leg extends Component {
             closeButtonProps={{
               tabIndex: 0,
             }}>
+            <BpkTable>
+              <BpkTableHead>
+                <BpkTableRow>
+                  <BpkTableHeadCell>From</BpkTableHeadCell>
+                  <BpkTableHeadCell>To</BpkTableHeadCell>
+                  <BpkTableHeadCell>Duration</BpkTableHeadCell>
+                </BpkTableRow>
+              </BpkTableHead>
+              <BpkTableBody>
             {this.props.legInfo["Segments"].map(segment => {
               return (
-                <BpkText key={segment["Id"]}>{
-                  moment(segment["DepartureDateTime"]).format("HH:MM") + " " +
-                  segment["OriginCode"] + " -> " + segment["DestinationCode"] + " " + moment(segment["ArrivalDateTime"]).format("HH:MM") +
-                  " (" + moment.utc(segment["Duration"]*60000).format("h[h] mm[)]")}<br/>
-                </BpkText>)
+                <BpkTableRow key={segment["Id"]}>
+                  <BpkTableCell>{segment["OriginCode"] + " " + moment(segment["DepartureDateTime"]).format("HH:MM")}</BpkTableCell>
+                  <BpkTableCell>{segment["DestinationCode"] + " " + moment(segment["ArrivalDateTime"]).format("HH:MM")}</BpkTableCell>
+                  <BpkTableCell>{moment.utc(segment["Duration"]*60000).format("H[h] mm")}</BpkTableCell>
+                </BpkTableRow>
+              )
             })}
+              </BpkTableBody>
+            </BpkTable>
           </BpkPopover>
         </div>
         <AirlineLogo/>
@@ -79,7 +88,7 @@ class Leg extends Component {
         </BpkGridColumn>
         <Station stationTime={moment(this.props.legInfo["Arrival"]).format("HH:MM")} stationName={this.props.legInfo["DestinationStationCode"]}/>
         <BpkGridColumn offset={2} width={2}>
-          <BpkGridRow><BpkText textStyle="base" className={classes('rightAlign')}>{moment.utc(this.props.legInfo["Duration"]*60000).format("h[h] mm")}</BpkText></BpkGridRow>
+          <BpkGridRow><BpkText textStyle="base" className={classes('rightAlign')}>{moment.utc(this.props.legInfo["Duration"]*60000).format("H[h] mm")}</BpkText></BpkGridRow>
           <BpkGridRow>{directFlight}</BpkGridRow>
         </BpkGridColumn>
       </BpkGridRow>

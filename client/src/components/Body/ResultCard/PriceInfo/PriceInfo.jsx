@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
-import BpkCard from 'bpk-component-card';
-import {BpkGridContainer, BpkGridRow, BpkGridColumn} from 'bpk-component-grid';
-import BpkImage from 'bpk-component-image';
+import {BpkGridColumn, BpkGridRow} from 'bpk-component-grid';
 import STYLES from './PriceInfo.scss';
 import BpkText from "bpk-component-text";
 import LongArrowRightIcon from 'bpk-component-icon/lg/long-arrow-right';
 import {withAlignment} from 'bpk-component-icon';
-import {lineHeightLg, iconSizeLg, lineHeightXxl} from 'bpk-tokens/tokens/base.es6';
+import {iconSizeLg, lineHeightXxl} from 'bpk-tokens/tokens/base.es6';
 import BpkButton from 'bpk-component-button';
-import * as actions from "../../../../store/actions";
+import BpkPopover from 'bpk-component-popover';
+import {BpkTable, BpkTableBody, BpkTableCell, BpkTableHead, BpkTableHeadCell, BpkTableRow,} from 'bpk-component-table';
 import connect from "react-redux/es/connect/connect";
 
 const AlignedArrow = withAlignment(
@@ -18,17 +17,66 @@ const AlignedArrow = withAlignment(
 const classes = className => STYLES[className] || 'UNKNOWN';
 
 class PriceInfo extends Component {
+  openOtherDealsPopover = () => {
+    this.setState({
+      isOtherDealsOpen: true,
+    });
+  }
+  closeOtherDealsPopover = () => {
+    this.setState({
+      isOtherDealsOpen: false,
+    });
+  }
+
+  constructor() {
+    super();
+    this.state = {
+      isOtherDealsOpen: false,
+    };
+  }
+
   render() {
-    const otherDeals = this.props.priceInfo.length > 0 ? <BpkButton link className={classes('bottomAlign')}>&nbsp; other deals</BpkButton> : null
+    const otherDeals = this.props.priceInfo.length > 1 ?
+      <BpkButton onClick={this.openOtherDealsPopover} id={this.props.itenraryId + "OtherDeals"} link
+                 className={classes('bottomAlign')}>&nbsp; {this.props.priceInfo.length - 1} other
+        deals</BpkButton> : null
     return (
       <BpkGridRow>
         <BpkGridColumn width={8}>
           <BpkGridRow className={classes('relativePosition')}>
-            <BpkText textStyle="xl" className={classes('leftAlign')}>{this.props.currencySymbol}{this.props.priceInfo[0]["Price"]}</BpkText>
+            <BpkText textStyle="xl"
+                     className={classes('leftAlign')}>{this.props.currencySymbol}{this.props.priceInfo[0]["Price"]}</BpkText>
             {otherDeals}
+            <BpkPopover id={this.props.itenraryId + "OtherDeals-popover"}
+                        target={() => document.getElementById(this.props.itenraryId + "OtherDeals")}
+                        onClose={this.closeOtherDealsPopover}
+                        isOpen={this.state.isOtherDealsOpen}
+                        label="My popover"
+                        closeButtonText="Close"
+            >
+              <BpkTable>
+                <BpkTableHead>
+                  <BpkTableRow>
+                    <BpkTableHeadCell>Agent</BpkTableHeadCell>
+                    <BpkTableHeadCell>Price ({this.props.currencySymbol})</BpkTableHeadCell>
+                  </BpkTableRow>
+                </BpkTableHead>
+                <BpkTableBody>
+                  {this.props.priceInfo.slice(1).map((offer, index) => {
+                    return (
+                      <BpkTableRow key={this.props.itenraryId + "offer" + index}>
+                        <BpkTableCell>{offer["Agent"]}</BpkTableCell>
+                        <BpkTableCell>{offer["Price"]}</BpkTableCell>
+                      </BpkTableRow>
+                    )
+                  })}
+                </BpkTableBody>
+              </BpkTable>
+            </BpkPopover>
           </BpkGridRow>
           <BpkGridRow>
-            <BpkText textStyle="base" className={classes('leftAlign')+' '+classes('grayFill300')}>{this.props.priceInfo[0]["Agent"]}</BpkText>
+            <BpkText textStyle="base"
+                     className={classes('leftAlign') + ' ' + classes('grayFill300')}>{this.props.priceInfo[0]["Agent"]}</BpkText>
           </BpkGridRow>
         </BpkGridColumn>
         <BpkGridColumn width={4}>

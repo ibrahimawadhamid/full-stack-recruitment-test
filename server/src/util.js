@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const uuidv = require('uuid/v4');
 
 module.exports = {
   formatResponse: function(response) {
@@ -18,6 +19,7 @@ module.exports = {
       InboundLeg["stopsStations"] = getStopStations(response, InboundLeg);
 
       const tempItenrary = {
+        Id: uuidv(),
         OutboundLeg: OutboundLeg,
         InboundLeg: InboundLeg,
         pricingOptions: getPricingOptions(i, response),
