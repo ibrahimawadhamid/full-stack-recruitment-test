@@ -4,7 +4,7 @@ import BpkButton from 'bpk-component-button';
 import BpkMenuIcon from 'bpk-component-icon/lg/menu';
 import {withLargeButtonAlignment} from 'bpk-component-icon';
 
-const AlignedMenuIcon = withLargeButtonAlignment(BpkMenuIcon)
+const AlignedMenuIcon = withLargeButtonAlignment(BpkMenuIcon);
 
 class SideDrawerButton extends Component {
   render() {
@@ -14,6 +14,6 @@ class SideDrawerButton extends Component {
       </BpkButton>
     );
   }
-};
+}
 
 export default SideDrawerButton;

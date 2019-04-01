@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LegStopsText should render correctly 1`] = `
+<div>
+  <span
+    className="bpk-text bpk-text--base rightAlign bottomAlign redFill"
+    id="NaNmoreStops"
+  >
+    2 stops 
+  </span>
+</div>
+`;

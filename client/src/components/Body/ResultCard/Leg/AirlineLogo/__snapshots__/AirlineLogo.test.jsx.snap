@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AirlineLogo should render correctly 1`] = `
+<div
+  className="bpk-grid__column bpk-grid__column--2 bpk-grid__column--padded"
+>
+  <div
+    className={null}
+    style={
+      Object {
+        "width": 48,
+      }
+    }
+  >
+    <div
+      className="bpk-image bpk-image--no-background"
+      style={
+        Object {
+          "height": 0,
+          "paddingBottom": "100%",
+        }
+      }
+    >
+      <img
+        alt="airline logo"
+        className="bpk-image__img"
+        onLoad={[Function]}
+        src="./EZ.png"
+      />
+    </div>
+  </div>
+</div>
+`;

@@ -4,6 +4,11 @@
   position: relative;
 }
 
+.selectButton {
+  position: absolute;
+  right: 0;
+  top: 1.875rem;
+}
 .rightAlign {
   float: right;
 }
@@ -13,7 +18,8 @@
 }
 
 .bottomAlign {
-  float: bottom;
+  position: absolute;
+  bottom: .375rem;
 }
 
 .bottomMargin {

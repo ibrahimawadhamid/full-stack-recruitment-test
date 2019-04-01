@@ -3,5 +3,10 @@
 .App {
   &__main {
     padding: $bpk-spacing-sm;
+    text-align: center;
   }
+}
+
+.center {
+  margin: auto;
 }

@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const uuidv = require('uuid/v4');
 
 module.exports = {
   formatResponse: function(response) {
@@ -18,6 +19,7 @@ module.exports = {
       InboundLeg["stopsStations"] = getStopStations(response, InboundLeg);
 
       const tempItenrary = {
+        Id: uuidv(),
         OutboundLeg: OutboundLeg,
         InboundLeg: InboundLeg,
         pricingOptions: getPricingOptions(i, response),
@@ -25,6 +27,7 @@ module.exports = {
       itineraries.push(tempItenrary);
     }
     const beautifulResult = {
+      query: response["Query"],
       itineraries: itineraries,
       currencySymbol: response["Currencies"][0]["Symbol"]
     };
@@ -53,7 +56,7 @@ const getStopStations = (response, leg) => {
 const getPricingOptions = (index, response) => {
   let pricingOptions = [];
   for (let j = 0; j < response["Itineraries"][index]["PricingOptions"].length; j++) {
-    const agentID = response["Itineraries"][index]["PricingOptions"][j]["Agents"][0]
+    const agentID = response["Itineraries"][index]["PricingOptions"][j]["Agents"][0];
     const tempAgent = _.find(response["Agents"], {Id: agentID});
     const tempPrice = response["Itineraries"][index]["PricingOptions"][j]["Price"];
     let tempPricingOption = {Agent: tempAgent["Name"], Price: tempPrice};

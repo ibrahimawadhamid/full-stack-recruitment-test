@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ControlsHeader should render correctly 1`] = `
+<header
+  className="whiteBackground"
+>
+  <div
+    className="bpk-grid__container"
+  >
+    <div
+      className="bpk-grid__row bpk-grid__row--padded"
+    >
+      <div
+        className="bpk-grid__column bpk-grid__column--2 bpk-grid__column--padded"
+      >
+        <button
+          className="bpk-button bpk-button--link leftAlign"
+          disabled={false}
+          onClick={null}
+          type="button"
+        >
+          Filter
+        </button>
+      </div>
+      <div
+        className="bpk-grid__column bpk-grid__column--2 bpk-grid__column--padded"
+      >
+        <button
+          className="bpk-button bpk-button--link"
+          disabled={false}
+          onClick={null}
+          type="button"
+        >
+          Sort
+        </button>
+      </div>
+      <div
+        className="bpk-grid__column bpk-grid__column--4 bpk-grid__column--offset-4 bpk-grid__column--padded"
+      >
+        <button
+          className="bpk-button bpk-button--link rightAlign"
+          disabled={false}
+          onClick={null}
+          type="button"
+        >
+          <span
+            style={
+              Object {
+                "display": "inline-block",
+                "lineHeight": "1.125rem",
+                "marginTop": "0.1875rem",
+                "verticalAlign": "top",
+              }
+            }
+          >
+            <svg
+              height="18"
+              style={
+                Object {
+                  "height": "1.125rem",
+                  "width": "1.125rem",
+                }
+              }
+              viewBox="0 0 24 24"
+              width="18"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10 19.1h4.8c-.6 1.5-2.3 2.3-3.9 1.7-.8-.3-1.4-.9-1.7-1.7h.8zm8-8c0-2.5-1.6-4.8-4-5.7.2-1.1-.5-2.1-1.6-2.3-1.1-.2-2.1.5-2.3 1.6v.7C7.7 6.2 6 8.5 6 11v3l-2 3h16l-2-3v-2.9z"
+              />
+            </svg>
+          </span>
+          Price alerts
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+`;
