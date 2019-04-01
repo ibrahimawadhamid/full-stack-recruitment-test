@@ -22,8 +22,6 @@
     "bpk-component-icon": "^3.27.1",
     "bpk-component-image": "^2.1.20",
     "bpk-component-infinite-scroll": "^2.2.11",
-    "bpk-component-loading-button": "^2.0.72",
-    "bpk-component-panel": "^1.0.110",
     "bpk-component-popover": "^2.2.17",
     "bpk-component-spinner": "^2.2.79",
     "bpk-component-table": "^1.1.53",
