@@ -34,8 +34,6 @@ export const fetchResults = () => {
     LocationSchema: "sky",
     CabinClass: "economy",
     GroupPricing: false,
-    pageIndex: 1,
-    pageSize: 1
   };
   return dispatch => {
     axiosInstance.get(backendURL, {params})
