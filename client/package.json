@@ -14,6 +14,7 @@
   },
   "devDependencies": {
     "backpack-react-scripts": "^7.0.0",
+    "bpk-component-banner-alert": "^2.0.75",
     "bpk-component-button": "^2.1.48",
     "bpk-component-card": "^1.1.61",
     "bpk-component-drawer": "^1.2.68",

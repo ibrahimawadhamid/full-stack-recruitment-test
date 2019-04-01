@@ -1,7 +1,7 @@
 import React from 'react';
 import TestRenderer from 'react-test-renderer';
 
-import { InfoHeader } from './InfoHeader';
+import InfoHeader from './InfoHeader';
 
 describe('InfoHeader', () => {
     it('should render correctly', () => {
