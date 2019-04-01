@@ -10,10 +10,10 @@ export const setResults = (searchResults) => {
 };
 
 
-export const fetchResultsFailed = (error) => {
+export const fetchResultsFailed = (errorMessage) => {
   return {
     type: actionTypes.FETCH_RESULTS_FAILED,
-    error: error
+    errorMessage: errorMessage
   };
 };
 
@@ -40,8 +40,8 @@ export const fetchResults = () => {
       .then(response => {
         dispatch(setResults(response.data));
       })
-      .catch(error => {
-        dispatch(fetchResultsFailed(error));
+      .catch(errorMessage => {
+        dispatch(fetchResultsFailed(errorMessage));
       });
   };
 };

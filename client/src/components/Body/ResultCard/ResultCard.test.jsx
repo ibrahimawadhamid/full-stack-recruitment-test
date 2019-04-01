@@ -1,5 +1,5 @@
 import React from 'react';
-import { configure, shallow } from 'enzyme';
+import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 import ResultCard from './ResultCard';
@@ -30,7 +30,7 @@ describe('ResultCard', () => {
         expect(wrapper.find(Leg)).toHaveLength(2);
     })
 
-    it('should render PricingInfo', () => {
+    it('should render PriceInfo', () => {
         expect(wrapper.find(PriceInfo)).toHaveLength(1);
     })
 });
