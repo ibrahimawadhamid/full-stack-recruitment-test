@@ -9,7 +9,7 @@ import STYLES from './PriceInfo.scss';
 
 const classes = className => STYLES[className] || 'UNKNOWN';
 
-class PriceInfo extends Component {
+export class PriceInfo extends Component {
   openOtherDealsPopover = () => {
     this.setState({
       isOtherDealsOpen: true,

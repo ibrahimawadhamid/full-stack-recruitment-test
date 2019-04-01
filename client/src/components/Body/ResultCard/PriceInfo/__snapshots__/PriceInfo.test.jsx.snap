@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PriceInfo should render correctly 1`] = `
+<div
+  className="bpk-grid__row bpk-grid__row--padded"
+>
+  <div
+    className="bpk-grid__column bpk-grid__column--8 bpk-grid__column--padded"
+  >
+    <div
+      className="bpk-grid__row bpk-grid__row--padded relativePosition"
+    >
+      <span
+        className="bpk-text bpk-text--xl leftAlign"
+      >
+        price
+      </span>
+    </div>
+    <div
+      className="bpk-grid__row bpk-grid__row--padded"
+    >
+      <span
+        className="bpk-text bpk-text--base leftAlign grayFill300"
+      >
+        agent
+      </span>
+    </div>
+  </div>
+  <div
+    className="bpk-grid__column bpk-grid__column--4 bpk-grid__column--padded relativePosition"
+  >
+    <button
+      className="bpk-button bpk-button--large selectButton"
+      disabled={false}
+      onClick={null}
+      type="button"
+    >
+      Select
+    </button>
+  </div>
+</div>
+`;

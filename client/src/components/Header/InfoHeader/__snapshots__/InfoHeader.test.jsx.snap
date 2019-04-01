@@ -10,8 +10,7 @@ exports[`InfoHeader should render correctly 1`] = `
     <h1
       className="bpk-text bpk-text--xxl"
     >
-      EDI
-        
+      EDI  
       <span
         style={
           Object {
@@ -40,13 +39,12 @@ exports[`InfoHeader should render correctly 1`] = `
           />
         </svg>
       </span>
-        
-      LON
+        LHR
     </h1>
     <p
       className="bpk-text bpk-text--base"
     >
-      travellers, economy
+      1 traveller, economy
     </p>
   </div>
 </header>
